@@ -43,7 +43,7 @@
                 android:textStyle="bold"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@={myViewModel.inputTitle}"/>
+                android:text="@={myViewModel.inputDes}"/>
 
         <LinearLayout
             android:layout_width="match_parent"

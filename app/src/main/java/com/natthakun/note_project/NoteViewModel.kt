@@ -1,6 +1,5 @@
 package com.natthakun.note_project
 
-import android.util.Patterns
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.LiveData
@@ -42,20 +41,18 @@ class NoteViewModel(private val repository: NoteRepository) : ViewModel(), Obser
     fun saveOrUpdate() {
 
         if (inputTitle.value == null) {
-            statusMessage.value = Event("Please enter subscriber's name")
+            statusMessage.value = Event("Please enter Title")
         } else if (inputDes.value == null) {
-            statusMessage.value = Event("Please enter subscriber's email")
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(inputDes.value!!).matches()) {
-            statusMessage.value = Event("Please enter a correct email address")
-        } else {
+            statusMessage.value = Event("you don't write des...")
+        }else {
             if (isUpdateOrDelete) {
                 noteToUpdateOrDelete.title = inputTitle.value!!
                 noteToUpdateOrDelete.des = inputDes.value!!
                 update(noteToUpdateOrDelete)
             } else {
-                val name = inputTitle.value!!
-                val email = inputDes.value!!
-                insert(Note(0, name, email))
+                val title = inputTitle.value!!
+                val des = inputDes.value!!
+                insert(Note(0, title, des))
                 inputTitle.value = null
                 inputDes.value = null
             }
@@ -76,7 +73,7 @@ class NoteViewModel(private val repository: NoteRepository) : ViewModel(), Obser
     fun insert(note: Note) = viewModelScope.launch {
         val newRowId = repository.insert(note)
         if (newRowId > -1) {
-            statusMessage.value = Event("Subscriber Inserted Successfully $newRowId")
+            statusMessage.value = Event("Note Inserted Successfully $newRowId")
         } else {
             statusMessage.value = Event("Error Occurred")
         }
@@ -116,7 +113,7 @@ class NoteViewModel(private val repository: NoteRepository) : ViewModel(), Obser
     fun clearAll() = viewModelScope.launch {
         val noOfRowsDeleted = repository.deleteAll()
         if (noOfRowsDeleted > 0) {
-            statusMessage.value = Event("$noOfRowsDeleted Subscribers Deleted Successfully")
+            statusMessage.value = Event("$noOfRowsDeleted Deleted Successfully")
         } else {
             statusMessage.value = Event("Error Occurred")
         }
@@ -134,10 +131,10 @@ class NoteViewModel(private val repository: NoteRepository) : ViewModel(), Obser
 
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
+
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
+
     }
 }
