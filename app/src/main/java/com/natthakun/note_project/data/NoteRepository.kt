@@ -2,7 +2,7 @@ package com.natthakun.note_project.data
 
 class NoteRepository(private val dao : NoteDao) {
 
-    val subscribers = dao.getAllNote()
+    val note = dao.getAllNote()
 
     suspend fun insert(note: Note):Long{
         return dao.insertNote(note)
