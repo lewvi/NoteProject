@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Note_project</string>
+    <string name="TitleHInt">Input your title...</string>
+    <string name="descriptionHint">Description...</string>
 </resources>

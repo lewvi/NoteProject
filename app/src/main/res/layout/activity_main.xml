@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ede5d8"
         tools:context=".MainActivity">
 
         <LinearLayout
@@ -20,7 +21,7 @@
             android:layout_margin="16dp"
             android:orientation="vertical"
             tools:layout_editor_absoluteX="81dp"
-            tools:layout_editor_absoluteY="25dp" >
+            tools:layout_editor_absoluteY="25dp">
 
             <EditText
                 android:id="@+id/title_text"
@@ -28,10 +29,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:layout_marginBottom="5dp"
-                android:textStyle="bold"
                 android:ems="10"
+                android:hint="@string/TitleHInt"
                 android:inputType="textPersonName"
-                android:text="@={myViewModel.inputTitle}"/>
+                android:text="@={myViewModel.inputTitle}"
+                android:textColor="#F56457"
+                android:textColorHint="#F56457"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/descrption_text"
@@ -40,45 +44,47 @@
                 android:layout_margin="15dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:textStyle="bold"
                 android:ems="10"
+                android:hint="@string/descriptionHint"
                 android:inputType="textPersonName"
-                android:text="@={myViewModel.inputDes}"/>
+                android:text="@={myViewModel.inputDes}"
+                android:textColor="#F56457"
+                android:textColorHint="#F56457"
+                android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/save_or_update_button"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@={myViewModel.saveOrUpdateButtonText}"
-                android:onClick="@{()->myViewModel.saveOrUpdate()}"/>
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/clear_all_or_delete_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@={myViewModel.clearAllOrDeleteButtonText}"
-                android:onClick="@{()->myViewModel.clearAllOrDelete()}"
-                />
+                <Button
+                    android:id="@+id/save_or_update_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="@{()->myViewModel.saveOrUpdate()}"
+                    android:text="@={myViewModel.saveOrUpdateButtonText}"
+                    android:textColor="#09090B"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/clear_all_or_delete_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="@{()->myViewModel.clearAllOrDelete()}"
+                    android:text="@={myViewModel.clearAllOrDeleteButtonText}"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/note_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/note_recyclerView"
-                android:layout_margin="5dp" >
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_margin="5dp"></androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
